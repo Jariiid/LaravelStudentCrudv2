@@ -65,6 +65,7 @@
                         <th>Full Name</th>
                         <th>Student Number</th>
                         <th>Email</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
