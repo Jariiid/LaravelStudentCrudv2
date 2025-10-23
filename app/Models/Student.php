@@ -6,5 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-    protected $fillable = ['name', 'student_number', 'email'];
+    protected $fillable = [
+        'fname',
+        'mname',
+        'lname',
+        'student_number',
+        'email',
+    ];
 }

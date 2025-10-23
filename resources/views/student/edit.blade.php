@@ -12,21 +12,32 @@
                     @csrf
                     @method('PUT')
 
-                    <!-- Full Name -->
-                    <div class="form-control w-full mb-4">
-                        <label class="label font-semibold">Full Name</label>
-                        <input 
-                            type="text" 
-                            name="name" 
-                            value="{{ old('name', $student->name) }}"
-                            class="input input-bordered w-full @error('name') input-error @enderror"
-                            required
-                        />
-                        @error('name')
-                            <div class="label">
-                                <span class="label-text-alt text-error">{{ $message }}</span>
-                            </div>
-                        @enderror
+                    <!-- Name Fields -->
+                    <div class="grid grid-cols-3 gap-4 mb-4">
+                        <!-- First Name -->
+                        <div class="form-control w-full">
+                            <label class="label font-semibold">First Name</label>
+                            <input type="text" name="fname" value="{{ old('fname', $student->fname) }}" class="input input-bordered w-full @error('fname') input-error @enderror" required />
+                            @error('fname')
+                                <div class="label"><span class="label-text-alt text-error">{{ $message }}</span></div>
+                            @enderror
+                        </div>
+                        <!-- Middle Name -->
+                        <div class="form-control w-full">
+                            <label class="label font-semibold">Middle Name</label>
+                            <input type="text" name="mname" value="{{ old('mname', $student->mname) }}" class="input input-bordered w-full @error('mname') input-error @enderror" />
+                            @error('mname')
+                                <div class="label"><span class="label-text-alt text-error">{{ $message }}</span></div>
+                            @enderror
+                        </div>
+                        <!-- Last Name -->
+                        <div class="form-control w-full">
+                            <label class="label font-semibold">Last Name</label>
+                            <input type="text" name="lname" value="{{ old('lname', $student->lname) }}" class="input input-bordered w-full @error('lname') input-error @enderror" required />
+                            @error('lname')
+                                <div class="label"><span class="label-text-alt text-error">{{ $message }}</span></div>
+                            @enderror
+                        </div>
                     </div>
 
                     <!-- Student Number -->

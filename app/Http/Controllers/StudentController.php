@@ -12,7 +12,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::all();
+        $students = Student::paginate(10); // show 10 per page
 
         return view('home', ['students' => $students]);
     }
@@ -31,10 +31,13 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'student_number' => 'required|digits:10|unique:students',
-            'email' => 'required|email|unique:students',
+            'fname' => 'required|string|max:50',
+            'mname' => 'nullable|string|max:50',
+            'lname' => 'required|string|max:50',
+            'student_number' => 'required|digits:10|unique:students,student_number',
+            'email' => 'required|email|max:100|unique:students,email',
         ]);
+
 
         Student::create($request->all());
 
@@ -63,14 +66,18 @@ class StudentController extends Controller
     public function update(Request $request, Student $student)
     {
     $validated = $request->validate([
-        'name' => 'required|string|max:255',
-        'student_number' => 'required|string|max:50|unique:students,student_number,' . $student->id,
-        'email' => 'required|email|max:255|unique:students,email,' . $student->id,
+        'fname' => 'required|string|max:50',
+        'mname' => 'nullable|string|max:50',
+        'lname' => 'required|string|max:50',
+        'student_number' => 'required|digits:10|unique:students,student_number,' . $student->id,
+        'email' => 'required|email|max:100|unique:students,email,' . $student->id,
     ]);
+
 
     $student->update($validated);
 
     return redirect('/')->with('success', 'Student updated successfully!');
+    
     }
 
     /**
@@ -81,6 +88,6 @@ class StudentController extends Controller
 
         $student->delete();
     
-        return redirect('/')->with('success', 'Chirp deleted!');
+        return redirect()->back()->with('success', 'Student deleted!');
     }
 }

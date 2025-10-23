@@ -2,7 +2,7 @@
 
 <tr>
     <td>{{ $student->id }}</td>
-    <td>{{ $student->name }}</td>
+    <td>{{ $student->fname }} {{ $student->mname }} {{ $student->lname }}</td>
     <td>{{ $student->student_number }}</td>
     <td>{{ $student->email }}</td>
     <td class="space-x-3">
@@ -36,6 +36,7 @@
         </dialog>
     </td>
 </tr>
+
 <script>
     let currentForm = null;
 
